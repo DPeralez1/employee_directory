@@ -1,6 +1,8 @@
 import "./index.css";
 import Employee from "./components/Employee";
 import { useState } from "react";
+import AddEmployee from "./components/AddEmployee";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [role, setRole] = useState("dev");
@@ -45,13 +47,23 @@ function App() {
 
   function updateEmployee(id, newName, newRole) {
     const updatedEmployees = employees.map((employee) => {
-      if (id == employee.id) {
+      if (id === employee.id) {
         return { ...employee, name: newName, role: newRole };
       }
 
       return employee;
     });
     setEmployees(updatedEmployees);
+  }
+
+  function newEmployee(name, role, img) {
+    const newEmployee = {
+      id: uuidv4(),
+      name: name,
+      role: role,
+      img: img,
+    };
+    setEmployees([...employees, newEmployee]);
   }
 
   const showEmployees = true;
@@ -79,6 +91,7 @@ function App() {
               );
             })}
           </div>
+          <AddEmployee newEmployee={newEmployee} />
         </>
       ) : (
         <p>You cannot see the employees</p>
