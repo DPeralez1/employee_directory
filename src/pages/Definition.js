@@ -60,6 +60,7 @@ export default function Definition() {
   }
   return (
     <>
+      <DefinitionSearch />
       {word ? (
         <>
           <h1>Here is a Definition: </h1>
@@ -71,8 +72,7 @@ export default function Definition() {
               </p>
             );
           })}
-          <p>Search again:</p>
-          <DefinitionSearch />
+          {/* <p>Search again:</p> */}
         </>
       ) : null}
     </>
